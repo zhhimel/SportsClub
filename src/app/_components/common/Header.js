@@ -6,7 +6,7 @@ const Header = () => {
         <nav className="navbar">
           <div className="container">
             <div className="navbar-header">
-              <Link  href="index" className="navbar-brand">
+              <Link  href="/" className="navbar-brand">
                 Event Management Systems
               </Link>
             </div>
@@ -15,16 +15,16 @@ const Header = () => {
                 <Link  href="/">Home</Link>
               </li>
               <li>
-                <Link  href="viewEvents">Events</Link>
+                <Link  href="/viewEvents">Events</Link>
               </li>
               <li>
-                <Link  href="viewLocations">Locations</Link>
+                <Link  href="/viewLocations">Locations</Link>
               </li>
               <li>
                 <Link  href="/contact">Contact Us</Link>
               </li>
               <li className="btnlogout">
-                <Link  className="btn btn-default navbar-btn" href="login">
+                <Link  className="btn btn-default navbar-btn" href="/login">
                   Logout <span className="glyphicon glyphicon-log-out"></span>
                 </Link>
               </li>
