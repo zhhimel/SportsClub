@@ -9,7 +9,7 @@ const Page = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${process.env.BACKEND_URL}logPOST`, {
+      const response = await axios.post(`${process.env.BACKEND_URL}/logPOST`, {
         email,
         password,
       });
