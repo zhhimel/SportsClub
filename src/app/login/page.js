@@ -5,7 +5,7 @@ const page = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/logPOST', {
+      const response = await fetch('logPOST', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

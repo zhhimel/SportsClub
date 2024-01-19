@@ -1,19 +1,24 @@
+'use client'
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const RegistrationPage = () => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [cpassword, setCpassword] = useState('');
+  const [id,setId] = useState('');
 
   const handleRegister = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/logPOST', {
+      const response = await axios.post(`${process.env.BACKEND_URL}regPOST`, {
         username,
+        email,
+        phone,
         password,
-        cpassword,
+        id
       });
 
       // Assuming your API returns a status of 200 for a successful registration
@@ -49,6 +54,30 @@ const RegistrationPage = () => {
                 <span className="error"></span>
               </div>
               <div className="form-group">
+                <label htmlFor="username">Email: </label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  className="form-control"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <span className="error"></span>
+              </div>
+              <div className="form-group">
+                <label htmlFor="username">Student ID: </label>
+                <input
+                  type="text"
+                  id="id"
+                  name="id"
+                  className="form-control"
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                />
+                <span className="error"></span>
+              </div>
+              <div className="form-group">
                 <label htmlFor="password">Password: </label>
                 <input
                   type="password"
@@ -61,14 +90,14 @@ const RegistrationPage = () => {
                 <span className="error"></span>
               </div>
               <div className="form-group">
-                <label htmlFor="cpassword">Confirm Password: </label>
+                <label htmlFor="cpassword">Phone Number: </label>
                 <input
-                  type="password"
-                  id="cpassword"
-                  name="cpassword"
+                  type="phone"
+                  id="phone"
+                  name="phone"
                   className="form-control"
-                  value={cpassword}
-                  onChange={(e) => setCpassword(e.target.value)}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
                 <span className="error"></span>
               </div>
