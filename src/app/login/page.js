@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Link from 'next/link';
 const Page = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -61,6 +61,9 @@ const Page = () => {
                 Login
               </button>
             </form>
+            <div>
+              Don&apos;t have an account? <Link href='register'>Register</Link> here.
+            </div>
           </div>
         </div>
       </div>

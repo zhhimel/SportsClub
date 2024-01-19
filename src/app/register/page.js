@@ -3,22 +3,22 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const RegistrationPage = () => {
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phoneNo, setPhone] = useState();
   const [password, setPassword] = useState('');
-  const [id,setId] = useState('');
+  const [studentId,setId] = useState('');
 
   const handleRegister = async (event) => {
     event.preventDefault();
-
     try {
       const response = await axios.post(`${process.env.BACKEND_URL}regPOST`, {
-        username,
+        name,
+        studentId,
+        phoneNo,
         email,
-        phone,
         password,
-        id
+        
       });
 
       // Assuming your API returns a status of 200 for a successful registration
@@ -40,21 +40,21 @@ const RegistrationPage = () => {
       <div className="content">
         <div className="container">
           <div className="col-md-6 col-md-offset-3">
-            <form action="register.php" className="form-group" method="POST">
+            <form action="#" className="form-group" method="POST" onSubmit={(e)=>{handleRegister(e)}}>
               <div className="form-group">
-                <label htmlFor="username">Username: </label>
+                <label htmlFor="name">Name: </label>
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="name"
+                  name="name"
                   className="form-control"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
                 <span className="error"></span>
               </div>
               <div className="form-group">
-                <label htmlFor="username">Email: </label>
+                <label htmlFor="name">Email: </label>
                 <input
                   type="email"
                   id="email"
@@ -66,13 +66,13 @@ const RegistrationPage = () => {
                 <span className="error"></span>
               </div>
               <div className="form-group">
-                <label htmlFor="username">Student ID: </label>
+                <label htmlFor="name">Student ID: </label>
                 <input
                   type="text"
-                  id="id"
-                  name="id"
+                  id="studentId"
+                  name="studentId"
                   className="form-control"
-                  value={id}
+                  value={studentId}
                   onChange={(e) => setId(e.target.value)}
                 />
                 <span className="error"></span>
@@ -93,15 +93,15 @@ const RegistrationPage = () => {
                 <label htmlFor="cpassword">Phone Number: </label>
                 <input
                   type="number"
-                  id="phone"
-                  name="phone"
+                  id="phoneNo"
+                  name="phoneNo"
                   className="form-control"
-                  value={phone}
+                  value={phoneNo}
                   onChange={(e) => setPhone(e.target.value)}
                 />
                 <span className="error"></span>
               </div>
-              <button type="submit" className="btn btn-default" onClick={handleRegister}>
+              <button type="submit" className="btn btn-default">
                 Register
               </button>
             </form>
