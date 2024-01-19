@@ -12,7 +12,7 @@ const RegistrationPage = () => {
   const handleRegister = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${process.env.BACKEND_URL}regPOST`, {
+      const response = await axios.post(`${process.env.BACKEND_URL}/regPOST`, {
         name,
         studentId,
         phoneNo,

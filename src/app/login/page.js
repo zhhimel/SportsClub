@@ -34,7 +34,7 @@ const Page = () => {
       <div className="content">
         <div className="container">
           <div className="col-md-6 col-md-offset-3">
-            <form action="#" method="POST">
+            <form action="#" onSubmit={(e)=>{handleLogin}}>
               <div className="form-group">
                 <label htmlFor="username">Email: </label>
                 <input
@@ -57,7 +57,7 @@ const Page = () => {
                 />
                 <span className="error"></span>
               </div>
-              <button type="submit" className="btn btn-default" onClick={handleLogin}>
+              <button type="submit" className="btn btn-default" onClick={(e)=>{}}>
                 Login
               </button>
             </form>
