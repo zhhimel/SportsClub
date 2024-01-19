@@ -56,7 +56,7 @@ const RegistrationPage = () => {
               <div className="form-group">
                 <label htmlFor="username">Email: </label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   name="email"
                   className="form-control"
@@ -92,7 +92,7 @@ const RegistrationPage = () => {
               <div className="form-group">
                 <label htmlFor="cpassword">Phone Number: </label>
                 <input
-                  type="phone"
+                  type="number"
                   id="phone"
                   name="phone"
                   className="form-control"

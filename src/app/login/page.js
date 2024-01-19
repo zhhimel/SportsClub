@@ -1,19 +1,22 @@
-'use client'
-import Link from "next/link";
-const page = () => {
+'use client';
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const Page = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('logPOST', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
+      const response = await axios.post(`${process.env.BACKEND_URL}logPOST`, {
+        email,
+        password,
       });
 
-      if (response.ok) {
+      // Assuming your API returns a status of 200 for a successful login
+      if (response.status === 200) {
         // Handle successful login
         console.log('Login successful');
       } else {
@@ -21,9 +24,11 @@ const page = () => {
         console.error('Login failed');
       }
     } catch (error) {
+      // Handle network or other errors
       console.error('Error during login:', error);
     }
   };
+
   return (
     <div>
       <div className="content">
@@ -31,22 +36,24 @@ const page = () => {
           <div className="col-md-6 col-md-offset-3">
             <form action="#" method="POST">
               <div className="form-group">
-                <label for="username">Username: </label>
+                <label htmlFor="username">Email: </label>
                 <input
-                  type="text"
-                  name="username"
+                  type="email"
+                  name="email"
                   className="form-control"
-                  
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <span className="error"></span>
               </div>
               <div className="form-group">
-                <label for="password">Password: </label>
+                <label htmlFor="password">Password: </label>
                 <input
                   type="password"
                   name="password"
                   className="form-control"
-                  
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <span className="error"></span>
               </div>
@@ -54,9 +61,6 @@ const page = () => {
                 Login
               </button>
             </form>
-            <div>
-              Don't have an account? Click here to <Link href='/register'>register</Link>.
-            </div>
           </div>
         </div>
       </div>
@@ -64,4 +68,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
