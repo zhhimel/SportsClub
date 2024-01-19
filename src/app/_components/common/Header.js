@@ -25,7 +25,7 @@ const Header = () => {
               </li>
               <li className="btnlogout">
                 <Link  className="btn btn-default navbar-btn" href="/login">
-                  Logout <span className="glyphicon glyphicon-log-out"></span>
+                  Login <span className="glyphicon glyphicon-log-out"></span>
                 </Link>
               </li>
               <div
