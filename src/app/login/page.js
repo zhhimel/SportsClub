@@ -8,7 +8,6 @@ const Page = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
     try {
       const response = await axios.post(`${process.env.BACKEND_URL}logPOST`, {
         email,
@@ -34,7 +33,7 @@ const Page = () => {
       <div className="content">
         <div className="container">
           <div className="col-md-6 col-md-offset-3">
-            <form action="#" onSubmit={(e)=>{handleLogin(e)}}>
+            <form action="#" method='POST' >
               <div className="form-group">
                 <label htmlFor="username">Email: </label>
                 <input
@@ -57,7 +56,7 @@ const Page = () => {
                 />
                 <span className="error"></span>
               </div>
-              <button type="submit" className="btn btn-default" onClick={(e)=>{}}>
+              <button type="submit" className="btn btn-default" onClick={(e)=>{handleLogin(e)}}>
                 Login
               </button>
             </form>

@@ -40,7 +40,7 @@ const RegistrationPage = () => {
       <div className="content">
         <div className="container">
           <div className="col-md-6 col-md-offset-3">
-            <form action="#" className="form-group" method="POST" onSubmit={(e)=>{handleRegister(e)}}>
+            <form action="#" className="form-group" method="POST" >
               <div className="form-group">
                 <label htmlFor="name">Name: </label>
                 <input
@@ -101,7 +101,7 @@ const RegistrationPage = () => {
                 />
                 <span className="error"></span>
               </div>
-              <button type="submit" className="btn btn-default" onClick={(e)=>{}}>
+              <button type="submit" className="btn btn-default" onClick={(e)=>{handleRegister(e)}}>
                 Register
               </button>
             </form>

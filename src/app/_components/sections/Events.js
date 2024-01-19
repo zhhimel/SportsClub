@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -9,7 +10,7 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `${process.env.BACKEND_URL}/events`
+          `${process.env.BACKEND_URL}/allEvent`
         );
         setEvents(response.data); // Assuming the response contains an array of events
       } catch (error) {
