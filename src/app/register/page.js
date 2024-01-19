@@ -101,7 +101,7 @@ const RegistrationPage = () => {
                 />
                 <span className="error"></span>
               </div>
-              <button type="submit" className="btn btn-default">
+              <button type="submit" className="btn btn-default" onClick={(e)=>{}}>
                 Register
               </button>
             </form>
