@@ -17,6 +17,7 @@ const Page = () => {
       // Assuming your API returns a status of 200 for a successful login
       if (response.status === 200) {
         // Handle successful login
+        window.localStorage.setItem('user',response.data);
         console.log('Login successful');
       } else {
         // Handle login error

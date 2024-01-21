@@ -1,6 +1,8 @@
 'use client'
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import axios from "axios"; // Import axios for making HTTP requests
+
 const Page = () => {
   const [events, setEvents] = useState([]);
 
@@ -9,7 +11,7 @@ const Page = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(`${process.env.BACKEND_URL}/allEvent`);
-        setEvents(response.data); // Assuming the response contains an array of events
+        setEvents(response.data); // Set events with the data from the response
       } catch (error) {
         console.error("Error fetching events:", error);
       }
@@ -17,14 +19,19 @@ const Page = () => {
 
     fetchEvents();
   }, []);
+  const handleDelete = (eventId) => {
+    // Filter out the event with the specified eventId
+    const updatedEvents = events.filter((event) => event.eventId !== eventId);
+    setEvents(updatedEvents);
+  };
   return (
     <div>
-      <div class="content">
-        <div class="container">
-          {/* <!-- Placeholder for a success or error message --> */}
+      <div className="content">
+        <div className="container">
+          {/* Placeholder for a success or error message */}
           <p>Message goes here</p>
 
-          <table class="table table-hover">
+          <table className="table table-hover">
             <thead>
               <tr>
                 <th>Event ID</th>
@@ -33,32 +40,25 @@ const Page = () => {
                 <th>Event Location</th>
                 <th>Organization</th>
                 <th>Event Description</th>
+                <th>Delete Option</th>
               </tr>
             </thead>
             <tbody>
               {events.map((event, id) => (
                 <tr key={id}>
-                  <td>{event.eventID}</td>
+                  <td>{event.evenId}</td>
                   <td>{event.eventName}</td>
                   <td>{event.date}</td>
                   <td>{event.eventLocation}</td>
                   <td>{event.organization}</td>
                   <td>{event.eventDescription}</td>
-                  <td>
-                    <a
-                      className="delete"
-                      href={`deleteEvent.php?id=${event.eventID}`}
-                    >
-                      Delete
-                    </a>
-                  </td>
+                  <td><button onClick={() => handleDelete(event.eventId)}>Delete</button></td>
                 </tr>
               ))}
             </tbody>
           </table>
-
-          
         </div>
+        <Link href='/createnewevent'><button>Create Event</button></Link>
       </div>
     </div>
   );

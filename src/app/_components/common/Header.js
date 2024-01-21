@@ -1,5 +1,12 @@
 import Link from "next/link";
 const Header = () => {
+
+  const user=window.localStorage.getItem('user');
+
+  const handleLogOut = () => {
+    window.localStorage.removeItem('user');
+    window.location.href='/';
+  }
   return (
     <div>
       <header className="bgImage">
@@ -23,11 +30,18 @@ const Header = () => {
               <li>
                 <Link  href="/contact">Contact Us</Link>
               </li>
-              <li className="btnlogout">
+              {user!=null?(  <li className="btnlogout">
                 <Link  className="btn btn-default navbar-btn" href="/login">
                   Login <span className="glyphicon glyphicon-log-out"></span>
                 </Link>
-              </li>
+              </li>):(
+                  <li className="btnlogout">
+                  <Link  className="btn btn-default navbar-btn" onClick={handleLogOut}>
+                    Logout <span className="glyphicon glyphicon-log-out"></span>
+                  </Link>
+                </li>
+              )}
+            
               <div
                 className="modal fade"
                 id="login"
