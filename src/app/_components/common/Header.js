@@ -29,6 +29,9 @@ const Header = () => {
                 <Link  href="/viewLocations">Locations</Link>
               </li>
               <li>
+                <Link  href="/feedback">Feedback</Link>
+              </li>
+              <li>
                 <Link  href="/contact">Contact Us</Link>
               </li>
               {user!=null?(  <li className="btnlogout">
