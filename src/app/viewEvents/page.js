@@ -59,6 +59,7 @@ const Page = () => {
           </table>
         </div>
         <Link href='/createnewevent'><button>Create Event</button></Link>
+        <Link href='/updateevent'><button>Update Event</button></Link>
       </div>
     </div>
   );
