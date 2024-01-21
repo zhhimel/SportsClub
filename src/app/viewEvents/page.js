@@ -19,11 +19,24 @@ const Page = () => {
 
     fetchEvents();
   }, []);
-  const handleDelete = (eventId) => {
-    // Filter out the event with the specified eventId
-    const updatedEvents = events.filter((event) => event.eventId !== eventId);
-    setEvents(updatedEvents);
+
+  const handleDelete = async (eventId, eventName) => {
+    try {
+      // Make a DELETE request to the backend to delete the event
+      await axios.delete(`${process.env.BACKEND_URL}/event/${eventName}`);
+      
+      // Update the state to reflect the deletion
+      const updatedEvents = events.filter((event) => event.eventId !== eventId);
+      setEvents(updatedEvents);
+
+      // Optionally, you can show a success message or handle other UI updates
+      console.log("Event deleted successfully");
+    } catch (error) {
+      console.error("Error deleting event:", error);
+      // Optionally, you can show an error message or handle other UI updates
+    }
   };
+
   return (
     <div>
       <div className="content">
@@ -46,20 +59,21 @@ const Page = () => {
             <tbody>
               {events.map((event, id) => (
                 <tr key={id}>
-                  <td>{event.evenId}</td>
+                  <td>{event.eventId}</td>
                   <td>{event.eventName}</td>
                   <td>{event.date}</td>
                   <td>{event.eventLocation}</td>
                   <td>{event.organization}</td>
                   <td>{event.eventDescription}</td>
-                  <td><button onClick={() => handleDelete(event.eventId)}>Delete</button></td>
+                  <td>
+                    <button onClick={() => handleDelete(event.eventId, event.eventName)}>Delete</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         <Link href='/createnewevent'><button>Create Event</button></Link>
-        <Link href='/updateevent'><button>Update Event</button></Link>
       </div>
     </div>
   );

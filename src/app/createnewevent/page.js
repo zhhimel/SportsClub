@@ -40,9 +40,7 @@ const Page = () => {
         <div className="container">
           <div className="col-md-6 col-md-offset-3">
             <form onSubmit={handleSubmit}>
-              {/* ... (existing form fields) ... */}
-
-              {/* Add event handlers for form inputs */}
+              
               <div className="form-group">
                 <label htmlFor="username">Event ID:</label>
                 <input
@@ -55,7 +53,63 @@ const Page = () => {
                 <span className="error"></span>
               </div>
 
-              {/* ... (other form fields with similar structure) ... */}
+             
+              <div className="form-group">
+                <label htmlFor="password">Event Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  className="form-control"
+                  
+                  
+                />
+                <span className="error"></span>
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor="password">Date </label>
+                <input
+                  type="text"
+                  name="date"
+                  className="form-control"
+                  
+                  
+                />
+                <span className="error"></span>
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Event Location </label>
+                <input
+                  type="text"
+                  name="location"
+                  className="form-control"
+                  
+                  
+                />
+                <span className="error"></span>
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Organization</label>
+                <input
+                  type="text"
+                  name="organization"
+                  className="form-control"
+                  
+                  
+                />
+                <span className="error"></span>
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Event Description </label>
+                <input
+                  type="text"
+                  name="description"
+                  className="form-control"
+                  
+                  
+                />
+                <span className="error"></span>
+              </div>
 
               <button type="submit" className="btn btn-default">
                 Submit

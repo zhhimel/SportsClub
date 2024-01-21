@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link";
 const Header = () => {
 
@@ -36,7 +37,7 @@ const Header = () => {
                 </Link>
               </li>):(
                   <li className="btnlogout">
-                  <Link  className="btn btn-default navbar-btn" onClick={handleLogOut}>
+                  <Link href='/' className="btn btn-default navbar-btn" onClick={handleLogOut}>
                     Logout <span className="glyphicon glyphicon-log-out"></span>
                   </Link>
                 </li>
