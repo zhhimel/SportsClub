@@ -1,51 +1,67 @@
-import React from 'react'
+'use client'
+import React from "react";
+import { useState, useEffect } from "react";
+const Page = () => {
+  const [events, setEvents] = useState([]);
 
-const page = () => {
+  useEffect(() => {
+    // Fetch events from the backend
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get(`${process.env.BACKEND_URL}/allEvent`);
+        setEvents(response.data); // Assuming the response contains an array of events
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
   return (
     <div>
       <div class="content">
-    <div class="container">
-        {/* <!-- Placeholder for a success or error message --> */}
-        <p>Message goes here</p>
+        <div class="container">
+          {/* <!-- Placeholder for a success or error message --> */}
+          <p>Message goes here</p>
 
-        <table class="table table-hover">
+          <table class="table table-hover">
             <thead>
-                <tr>
-                    <th>Event ID</th>
-                    <th>Title</th>
-                    <th>Description</th>                    
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Cost</th>
-                    <th>Location</th>
-                    <th>Actions</th>
-                </tr>
+              <tr>
+                <th>Event ID</th>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>Event Location</th>
+                <th>Organization</th>
+                <th>Event Description</th>
+              </tr>
             </thead>
             <tbody>
-                {/* <!-- Placeholder for dynamic content --> */}
-                <tr>
-                    <td>EventID1</td>
-                    <td>Title1</td>
-                    <td>Description1</td>
-                    <td>StartDate1</td>
-                    <td>EndDate1</td>
-                    <td>Cost1</td>
-                    <td><a href="viewLocation.php?id=LocationID1">Location1</a></td>
-                    <td>
-                        <a href="viewEvent.php?id=EventID1">View</a>
-                        <a class="delete" href="deleteEvent.php?id=EventID1">Delete</a>
-                    </td>
+              {events.map((event, id) => (
+                <tr key={id}>
+                  <td>{event.eventID}</td>
+                  <td>{event.eventName}</td>
+                  <td>{event.date}</td>
+                  <td>{event.eventLocation}</td>
+                  <td>{event.organization}</td>
+                  <td>{event.eventDescription}</td>
+                  <td>
+                    <a
+                      className="delete"
+                      href={`deleteEvent.php?id=${event.eventID}`}
+                    >
+                      Delete
+                    </a>
+                  </td>
                 </tr>
-                {/* <!-- Repeat the above structure for each row of dynamic content --> */}
+              ))}
             </tbody>
-        </table>
-        
-        <a class="btn btn-default" href="createEventForm.php">Create Event</a>
-    </div>
-</div>
+          </table>
 
+          
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
