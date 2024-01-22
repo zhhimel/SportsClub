@@ -1,24 +1,66 @@
-'use client'
-import React, { useState } from 'react';
-import axios from 'axios';
+"use client";
+import React, { useState,useEffect } from "react";
+import axios from "axios";
 
 const Page = () => {
+  const [feedbackList, setFeedbackList] = useState([{
+    name: "Himel",
+    id:"1904082",
+    feedback:"Hlelelasdfasdfasdliassd fliashdfv" 
+  },
+  {
+    name: "Himel",
+    id:"1904082",
+    feedback:"Hlelelasdfasdfasdliassd fliashdfv" 
+  },
+  {
+    name: "Himel",
+    id:"1904082",
+    feedback:"Hlelelasdfasdfasdliassd fliashdfv" 
+  },
+  {
+    name: "Himel",
+    id:"1904082",
+    feedback:"Hlelelasdfasdfasdliassd fliashdfv" 
+  },
+  {
+    name: "Himel",
+    id:"1904082",
+    feedback:"Hlelelasdfasdfasdliassd fliashdfv" 
+  },
+]);
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.BACKEND_URL}/getFeedback`
+        );
+        setFeedbackList(response.data);
+      } catch (error) {
+        console.error("Error fetching feedback:", error);
+      }
+    };
+
+    // fetchFeedback();
+  }, []);
   const [formData, setFormData] = useState({
-    name: '',
-    id: '',
-    feedback: '',
+    name: "",
+    id: "",
+    feedback: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${process.env.BACKEND_URL}/createFeedback`, formData);
-      
-      console.log('Feedback posted successfully:', response.data);
+      const response = await axios.post(
+        `${process.env.BACKEND_URL}/createFeedback`,
+        formData
+      );
+
+      console.log("Feedback posted successfully:", response.data);
     } catch (error) {
-      console.error('Error posting feedback:', error);
-      
+      console.error("Error posting feedback:", error);
     }
   };
 
@@ -72,6 +114,29 @@ const Page = () => {
                 Post your feedback
               </button>
             </form>
+            <div className="container mt-5">
+              <div className="row">
+                <div className="col-md-6 offset-md-3">
+                  <div className="feedback-section">
+                    <h2>All Feedback</h2>
+                    <ul className="list-group">
+                      {feedbackList.map((feedback, index) => (
+                        <li key={index} className="list-group-item">
+                          <strong>Name:</strong> {feedback.name}
+                          <br />
+                          <strong>ID:</strong> {feedback.id}
+                          <br />
+                          <strong>Feedback:</strong> {feedback.feedback}
+                          <br />
+                          {/* Additional information as needed */}
+                          <hr />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
