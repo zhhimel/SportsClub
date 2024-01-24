@@ -17,6 +17,7 @@
     "next": "14.0.4",
     "rc-table": "^7.37.0",
     "react": "^18",
+    "react-bootstrap": "^2.10.0",
     "react-dom": "^18",
     "tailwindcss": "^3.4.1"
   },
