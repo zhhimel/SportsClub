@@ -6,52 +6,15 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 const Page = () => {
   const [show, setShow] = useState(false);
-  const [eventd, setEvent]=useState();
-  console.log(show);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [events, setEvents] = useState([
-    {
-      eventId: "1",
-      eventName: "Sport",
-      date: "1.12.24",
-      eventLocation: "Field",
-      organization: "Sports Club",
-      eventDescription: "Events",
-    },
-    {
-      eventId: "2",
-      eventName: "Sport",
-      date: "1.12.24",
-      eventLocation: "Field",
-      organization: "Sports Club",
-      eventDescription: "Events",
-    },
-    {
-      eventId: "3",
-      eventName: "Sport",
-      date: "1.12.24",
-      eventLocation: "Field",
-      organization: "Sports Club",
-      eventDescription: "Events",
-    },
-    {
-      eventId: "4",
-      eventName: "Sport",
-      date: "1.12.24",
-      eventLocation: "Field",
-      organization: "Sports Club",
-      eventDescription: "Events",
-    },
-    {
-      evenId: "1",
-      eventName: "Sport",
-      date: "1.12.24",
-      eventLocation: "Field",
-      organization: "Sports Club",
-      eventDescription: "Events",
-    },
-  ]);
+  const [eventd, setEvent]=useState({
+    eventName: "",
+    date: "",
+    eventLocation: "",
+    organization: "",
+    eventDescription:"",
+    creatorStudentID: "",
+  });
+  const [events,setEvents]=useState([]);
 
   useEffect(() => {
     // Fetch events from the backend
@@ -76,7 +39,7 @@ const Page = () => {
     
     const respone = await axios.put(
       `${process.env.BACKEND_URL}/event/${eventd.eventName}`,
-      { eventd }
+      eventd ,{withCredentials:false}
     );
     alert(respone.data);
   };
@@ -104,14 +67,16 @@ const Page = () => {
                       type="text"
                       name="eventName"
                       value={eventd.eventName}
+                      onChange={(e) => setEvent({ ...eventd, eventName: e.target.value })}                      
                       className="form-control"
                     />
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="date">Date:</label>
-                    <input type="text" name="date" 
+                    <input type="date" name="date" 
                     value={eventd.date}
+                    onChange={(e) => setEvent({ ...eventd, date: e.target.value })} 
                     className="form-control" />
                   </div>
 
@@ -121,16 +86,40 @@ const Page = () => {
                       type="text"
                       name="eventLocation"
                       value={eventd.eventLocation}
+                    onChange={(e) => setEvent({ ...eventd, eventLocation: e.target.value })} 
                       className="form-control"
                     />
                   </div>
 
+                  
                   <div className="form-group">
                     <label htmlFor="organization">Organization:</label>
                     <input
                       type="text"
                       name="organization"
                       value={eventd.organization}
+                    onChange={(e) => setEvent({ ...eventd, organization: e.target.value })} 
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="form-group">
+                <label htmlFor="creatorStudentID">Creator Student ID:</label>
+                <input
+                  type="text"
+                  name="creatorStudentID"
+                  className="form-control"
+                  value={eventd.creatorStudentID}
+                  onChange={(e) => setEvent({ ...eventd, creatorStudentID: e.target.value })} 
+                  
+                />
+              </div>
+                  <div className="form-group">
+                    <label htmlFor="eventDescription">Event Description:</label>
+                    <input
+                      type="text"
+                      name="eventDescription"
+                      value={eventd.eventDescription}
+                    onChange={(e) => setEvent({ ...eventd, eventDescription: e.target.value })} 
                       className="form-control"
                     />
                   </div>

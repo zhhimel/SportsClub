@@ -7,14 +7,14 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
   const router=useRouter();
-  const user=window.localStorage.getItem('user');
+  const user=localStorage.getItem('user');
   const [formData, setFormData] = useState({
-    eventId: "",
     eventName: "",
     date: "",
     eventLocation: "",
     organization: "",
-    creatorStudentID: user.id,
+    eventDescription:"",
+    creatorStudentID: "",
   });
 
   const handleSubmit = async (e) => {
@@ -45,16 +45,7 @@ const Page = () => {
           <div className="col-md-6 col-md-offset-3">
             <form onSubmit={handleSubmit}>
 
-              <div className="form-group">
-                <label htmlFor="eventId">Event ID:</label>
-                <input
-                  type="text"
-                  name="eventId"
-                  className="form-control"
-                  value={formData.eventId}
-                  onChange={handleChange}
-                />
-              </div>
+              
 
               <div className="form-group">
                 <label htmlFor="eventName">Event Name:</label>
@@ -70,7 +61,7 @@ const Page = () => {
               <div className="form-group">
                 <label htmlFor="date">Date:</label>
                 <input
-                  type="text"
+                  type="date"
                   name="date"
                   className="form-control"
                   value={formData.date}
@@ -96,6 +87,26 @@ const Page = () => {
                   name="organization"
                   className="form-control"
                   value={formData.organization}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="creatorStudentID">Creator Student ID:</label>
+                <input
+                  type="text"
+                  name="creatorStudentID"
+                  className="form-control"
+                  value={formData.creatorStudentID}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="eventDescription">Description:</label>
+                <input
+                  type="text"
+                  name="eventDescription"
+                  className="form-control"
+                  value={formData.eventDescription}
                   onChange={handleChange}
                 />
               </div>

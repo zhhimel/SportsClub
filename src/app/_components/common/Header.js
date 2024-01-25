@@ -2,11 +2,10 @@
 import Link from "next/link";
 const Header = () => {
 
-  const user=window.localStorage.getItem('user');
+  const user=localStorage.getItem('user');
 
   const handleLogOut = () => {
-    window.localStorage.removeItem('user');
-    window.location.href='/';
+    localStorage.removeItem('user');
   }
   return (
     <div>
