@@ -9,12 +9,14 @@ const Header = () => {
   }
   return (
     <div>
-      <header className="bgImage">
+      <header className="bgImage" style={{backgroundImage:'url(../images/bgImage1.jpg)'}}>
         <nav className="navbar">
           <div className="container">
             <div className="navbar-header">
-              <Link  href="/" className="navbar-brand">
-                Event Management Systems
+              
+              <Link  href="/" className="nav navbar-brand"><strong>CUET Sports Club</strong>
+                
+                
               </Link>
             </div>
             <ul className="nav navbar-nav navbar-right">
@@ -24,23 +26,21 @@ const Header = () => {
               <li>
                 <Link  href="/viewEvents">Events</Link>
               </li>
-              <li>
-                <Link  href="/viewLocations">Locations</Link>
-              </li>
+             
               <li>
                 <Link  href="/feedback">Feedback</Link>
               </li>
               <li>
-                <Link  href="/contact">Contact Us</Link>
+                <Link  href="/about">About</Link>
               </li>
-              {user!=null?(  <li className="btnlogout">
+              {user===null?(  <li className="btnlogout">
                 <Link  className="btn btn-default navbar-btn" href="/login">
-                  Login <span className="glyphicon glyphicon-log-out"></span>
+                  Login <span className="glyphicon glyphicon-log-in"></span>
                 </Link>
               </li>):(
                   <li className="btnlogout">
                   <Link href='/' className="btn btn-default navbar-btn" onClick={handleLogOut}>
-                    Logout <span className="glyphicon glyphicon-log-out"></span>
+                    Logout <span className="glyphicon glyphicon-log-in"></span>
                   </Link>
                 </li>
               )}
@@ -125,12 +125,9 @@ const Header = () => {
         <div className="col-md-12">
           <div className="container">
             <div className="jumbotron">
-              <h1>Urban Events Venues & Catering</h1>
+              <h1>Sports is the weapon of change.</h1>
               <p>
-                Whether you're looking to book a cocktail party, post-work
-                gathering, celebratory function, conference, business meeting,
-                wedding, or private dining event, our dedicated Urban Events
-                team can create a package that will meet your every need.
+              The CUET Sports Club at Chittagong University of Engineering and Technology (CUET) is a vibrant and dynamic organization dedicated to promoting a culture of physical fitness, teamwork, and sportsmanship among the university's student body. Committed to fostering a sense of community and well-being, the club organizes and participates in various sports and recreational activities.
               </p>
               <p id="dateAndTime"></p>
             </div>

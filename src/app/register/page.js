@@ -101,7 +101,7 @@ const RegistrationPage = () => {
                 />
                 <span className="error"></span>
               </div>
-              <button type="submit" className="btn btn-default" onClick={(e)=>{handleRegister(e)}}>
+              <button type="submit" className="btn btn-primary" onClick={(e)=>{handleRegister(e)}}>
                 Register
               </button>
             </form>
